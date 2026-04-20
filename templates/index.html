@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4 fw-bold">My Job Applications</h2>
+
+{% if jobs %}
+<table class="table table-hover table-bordered align-middle">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Company</th>
+            <th>Role</th>
+            <th>Date Applied</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.id }}</td>
+            <td>{{ job.company }}</td>
+            <td>{{ job.role }}</td>
+            <td>{{ job.date_applied }}</td>
+            <td>
+                <span class="badge 
+                    {% if job.status == 'Applied' %} bg-primary
+                    {% elif job.status == 'Interview' %} bg-warning text-dark
+                    {% elif job.status == 'Offer' %} bg-success
+                    {% elif job.status == 'Rejected' %} bg-danger
+                    {% endif %}">
+                    {{ job.status }}
+                </span>
+            </td>
+            <td>{{ job.notes or '-' }}</td>
+            <td>
+                <a href="/update/{{ job.id }}" class="btn btn-sm btn-outline-primary">Update</a>
+                <a href="/delete/{{ job.id }}" class="btn btn-sm btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<div class="alert alert-info">No job applications yet. <a href="/add">Add your first one!</a></div>
+{% endif %}
+
+{% endblock %}
