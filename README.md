@@ -71,7 +71,7 @@ Visit `http://127.0.0.1:5000` in your browser.
 
 ## 📸 Screenshots
 
-![ApplyMate Home](screenshots/home.png.png)
+![ApplyMate Home](screenshot/home.png.png)
 
 ---
 
