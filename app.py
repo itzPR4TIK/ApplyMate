@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 from models import db, JobApplication
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URL'] = 'sqlite:///applymate.db'
-app.config['SQLAPCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///applymate.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
@@ -12,8 +12,12 @@ with app.app_context():
 @app.route('/')
 def index():
     jobs = JobApplication.query.all()
-    return render_template('index.html', jobs= jobs)
-
+    total = len(jobs)
+    applied = sum(1 for j in jobs if j.status == 'Applied')
+    interview = sum(1 for j in jobs if j.status == 'Interview')
+    offer = sum(1 for j in jobs if j.status == 'Offer')
+    rejected = sum(1 for j in jobs if j.status == 'Rejected')
+    return render_template('index.html', jobs=jobs, total=total, applied=applied, interview=interview, offer=offer, rejected=rejected)
 
 @app.route('/add', methods = ['GET', 'POST'])
 def add_jobs():
@@ -25,6 +29,8 @@ def add_jobs():
             status = request.form['status'],
             notes =request.form['notes']
         )
+        db.session.add(job)
+        db.session.commit()
         return redirect(url_for('index'))
     return render_template('add_job.html')
 
@@ -35,10 +41,10 @@ def delete_job(id):
     db.session.commit()
     return redirect(url_for('index'))
 
-@app.route('/update/int:id', methods=['GET', 'POST'])
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update_status(id):
     job = JobApplication.query.get_or_404(id)
-    if request.method == 'Post':
+    if request.method == 'POST':
         job.status = request.form['status']
         db.session.commit()
         return redirect(url_for('index'))

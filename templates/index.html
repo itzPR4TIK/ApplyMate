@@ -4,45 +4,81 @@
 
 <h2 class="mb-4 fw-bold">My Job Applications</h2>
 
+<!-- Summary Cards -->
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-2">
+        <div class="summary-card card-total">
+            <div class="count">{{ total }}</div>
+            <div class="label">Total</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-2">
+        <div class="summary-card card-applied">
+            <div class="count">{{ applied }}</div>
+            <div class="label">Applied</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-2">
+        <div class="summary-card card-interview">
+            <div class="count">{{ interview }}</div>
+            <div class="label">Interview</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-2">
+        <div class="summary-card card-offer">
+            <div class="count">{{ offer }}</div>
+            <div class="label">Offer</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-2">
+        <div class="summary-card card-rejected">
+            <div class="count">{{ rejected }}</div>
+            <div class="label">Rejected</div>
+        </div>
+    </div>
+</div>
+
 {% if jobs %}
-<table class="table table-hover table-bordered align-middle">
-    <thead class="table-dark">
-        <tr>
-            <th>#</th>
-            <th>Company</th>
-            <th>Role</th>
-            <th>Date Applied</th>
-            <th>Status</th>
-            <th>Notes</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for job in jobs %}
-        <tr>
-            <td>{{ job.id }}</td>
-            <td>{{ job.company }}</td>
-            <td>{{ job.role }}</td>
-            <td>{{ job.date_applied }}</td>
-            <td>
-                <span class="badge 
-                    {% if job.status == 'Applied' %} bg-primary
-                    {% elif job.status == 'Interview' %} bg-warning text-dark
-                    {% elif job.status == 'Offer' %} bg-success
-                    {% elif job.status == 'Rejected' %} bg-danger
-                    {% endif %}">
-                    {{ job.status }}
-                </span>
-            </td>
-            <td>{{ job.notes or '-' }}</td>
-            <td>
-                <a href="/update/{{ job.id }}" class="btn btn-sm btn-outline-primary">Update</a>
-                <a href="/delete/{{ job.id }}" class="btn btn-sm btn-outline-danger">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="table-wrapper">
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Company</th>
+                <th>Role</th>
+                <th>Date Applied</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.id }}</td>
+                <td><strong>{{ job.company }}</strong></td>
+                <td>{{ job.role }}</td>
+                <td>{{ job.date_applied }}</td>
+                <td>
+                    <span class="badge 
+                        {% if job.status == 'Applied' %} bg-primary
+                        {% elif job.status == 'Interview' %} bg-warning text-dark
+                        {% elif job.status == 'Offer' %} bg-success
+                        {% elif job.status == 'Rejected' %} bg-danger
+                        {% endif %}">
+                        {{ job.status }}
+                    </span>
+                </td>
+                <td>{{ job.notes or '-' }}</td>
+                <td>
+                    <a href="/update/{{ job.id }}" class="btn-update me-1">Update</a>
+                    <a href="/delete/{{ job.id }}" class="btn-delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% else %}
 <div class="alert alert-info">No job applications yet. <a href="/add">Add your first one!</a></div>

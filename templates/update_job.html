@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <h2 class="mb-4 fw-bold">Update Application</h2>
+
+        <div class="card mb-4 p-3 bg-light">
+            <p class="mb-1"><strong>Company:</strong> {{ job.company }}</p>
+            <p class="mb-1"><strong>Role:</strong> {{ job.role }}</p>
+            <p class="mb-0"><strong>Date Applied:</strong> {{ job.date_applied }}</p>
+        </div>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">Update Status</label>
+                <select name="status" class="form-select">
+                    <option value="Applied" {% if job.status == 'Applied' %}selected{% endif %}>Applied</option>
+                    <option value="Interview" {% if job.status == 'Interview' %}selected{% endif %}>Interview</option>
+                    <option value="Offer" {% if job.status == 'Offer' %}selected{% endif %}>Offer</option>
+                    <option value="Rejected" {% if job.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Update Status</button>
+            <a href="/" class="btn btn-outline-secondary w-100 mt-2">Cancel</a>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

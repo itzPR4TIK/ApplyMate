@@ -1,0 +1,156 @@
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 14px 24px;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+/* Summary Cards */
+.summary-card {
+    border-radius: 14px;
+    padding: 20px 24px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+}
+
+.summary-card .count {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.summary-card .label {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+.card-total    { background: linear-gradient(135deg, #667eea, #764ba2); }
+.card-applied  { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.card-interview{ background: linear-gradient(135deg, #f7971e, #ffd200); }
+.card-offer    { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.card-rejected { background: linear-gradient(135deg, #f5576c, #f093fb); }
+
+/* Table */
+.table-wrapper {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #1a1a2e;
+    color: white;
+    font-weight: 600;
+    padding: 14px 16px;
+    border: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background 0.2s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f0ff;
+}
+
+.table td {
+    padding: 14px 16px;
+    vertical-align: middle;
+    border: none;
+    font-size: 0.95rem;
+}
+
+/* Badges */
+.badge {
+    font-size: 0.8rem;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Buttons */
+.btn-update {
+    background: transparent;
+    border: 1.5px solid #667eea;
+    color: #667eea;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.btn-update:hover {
+    background: #667eea;
+    color: white;
+}
+
+.btn-delete {
+    background: transparent;
+    border: 1.5px solid #f5576c;
+    color: #f5576c;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: #f5576c;
+    color: white;
+}
+
+/* Page title */
+h2 {
+    color: #1a1a2e;
+    font-size: 1.6rem;
+}
+
+/* Alert */
+.alert {
+    border-radius: 12px;
+    border: none;
+    background: #e8f4fd;
+    color: #2c3e50;
+}
+
+/* Form pages */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1.5px solid #dee2e6;
+    padding: 10px 14px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.card {
+    border-radius: 12px;
+    border: 1.5px solid #e9ecef;
+}
